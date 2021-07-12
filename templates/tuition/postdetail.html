@@ -1,0 +1,36 @@
+{% extends 'basc.html' %}
+
+{% block title %} Post View {% endblock %}
+{% block body %}
+{% load humanize %}
+    <div class="container">
+         <h1 class="text-center">Post Detail</h1>
+            <div class="col-md-6">
+                <img src="{{ object.image.url }}"alt="" style="width:300px; height=300px"  class="rounded-circle">
+            </div>
+        <div class="col-md-8 offset-md-2">
+            Title={{object.title}}<br>
+            br:{{ object.user.username }} at:{{ object.created_ad |naturaltime }}<br>
+            {% if request.user  == object.user %}
+            <a href="/tuitaion/edit/{{object.id}}/">Edit</a><br>
+            <a href="/tuitaion/delete/{{object.id}}/">Delete</a><br>
+            {% endif %}
+        Subject={% for s in object.subject.all %}
+            {{ s.name }}
+            {% endfor %} <br>
+        Class={% for s in object.class_in.all %}
+            {{ s.name }},
+            {% endfor %} <br>
+        Category={{object.category}}<br>
+        Salary={{object.salary}}<br>
+        Medium={{object.medium}}<br>
+        Create_at={{object.created_ad}}<br>
+        Details={{object.details}}<br>
+        Email={{object.email}}<br>
+        Stats= {% if object.stats %} Yes {% else %} No {% endif %} <br>
+
+            
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'basc.html' %}
+
+{% block title %} Post View {% endblock %}
+{% block body %}
+        <h1>Welcome Post View</h1>
+      {% for p in post%}
+        {{p.title}}<br>
+        <img src="{{p.image.url}}" alt="">
+      {% endfor %}
+{% endblock %}

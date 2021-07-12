@@ -1,0 +1,19 @@
+{% extends 'basc.html' %}
+
+{% block title %} contact page {% endblock %}
+{% block body %}
+{% load crispy_forms_tags %}
+    <div class="container">
+        <div class="col-md-6 offset-md-3">
+             <h1 class="text-center">Please Contact </h1>
+         <div class="container">
+          <form method="POST">
+                {% csrf_token %}
+                {{form}}
+            <button type="submit">Submit</button>
+          </form>
+      </div>
+        </div>
+    </div>
+
+{% endblock %}

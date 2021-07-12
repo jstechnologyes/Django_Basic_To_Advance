@@ -1,0 +1,20 @@
+{% extends 'basc.html' %}
+
+{% block title %} Post View List {% endblock %}
+{% block body %}
+    <div class="contaier">
+         <h1 class="text-center">All Posts Are given below</h1>
+        <div class="col-md-6 offset-md-2 mb-1 p-3 border">
+            {% for p in results %}
+
+        {{p.title}} by {{ p.user.username }} :
+           Details: {{p.detail}}
+
+         <hr>
+      {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

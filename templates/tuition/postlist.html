@@ -1,0 +1,49 @@
+{% extends 'basc.html' %}
+
+{% block title %} Post View List {% endblock %}
+{% block body %}
+    <div class="contaier">
+        <div class="col-md-6">
+            <h1>Filter Data</h1>
+        <form action="/tuition/filter" method="post">
+                {% csrf_token %}
+           <div class="input-group mb-3">
+              <select class="custom-select" id="inputGroupSelect02" name="subjects">
+                <option></option>
+                  {% for i in subjects %}
+                     <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+              </select>
+              <div class="input-group-append">
+                <label class="input-group-text" for="inputGroupSelect02">Subjects</label>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <select class="custom-select" id="inputGroupSelect02" name="class_in">
+                <option></option>
+                  {% for i in classes %}
+                     <option value="{{i}}">{{i}}</option>
+                  {% endfor %}
+              </select>
+              <div class="input-group-append">
+                <label class="input-group-text" for="inputGroupSelect02">Class</label>
+              </div>
+            </div>
+            <button type="submit">Filter Groups</button>
+            </form>
+        </div>
+         <h1 class="text-center">All Posts Are given below</h1>
+        <div class="col-md-6 offset-md-2 mb-1 p-3 border">
+            {% for p in posts %}
+
+        {{p.title}} by {{ p.user.username }} :
+           Details: {{p.detail}}
+            <a href="/tuition/postdetail/{{p.id}}">Read More</a><br>
+         <hr>
+      {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}
