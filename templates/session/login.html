@@ -2,10 +2,11 @@
 
 {% block title %} Post View List {% endblock %}
 {% block body %}
+ {% load crispy_forms_tags %}
     <div class="container">
         <div class="col-md-6 offset-md-3">
-          <form action="">
-            {% load crispy_forms_tags %}
+          <form action="" method="post">
+            {% csrf_token %}
             {{ form| crispy }}
 
 

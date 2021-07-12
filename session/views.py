@@ -13,12 +13,18 @@ def loginuser(request):
             password=form.cleaned_data.get('password')
             user=authenticate(username=username, password=password)
             if user is not None:
-                login(user)
-                return  redirect('homeView')
+                login(request,user)
+                messages.success(request, "Successfully Login")
+                return redirect('homeview')
             else:
                 messages.error(request,'Inviled Username or Password')
         else:
             messages.error(request, 'Inviled Username or Password')
     else:
-        form =AuthenticationForm()
-        return render(request,'session/login.html',{'form':form})
+        form = AuthenticationForm()
+    return render(request,'session/login.html',{'form':form})
+
+def logoutuser(request):
+    logout(request)
+    messages.success(request, "Successfully Logout")
+    return redirect('homeview')
