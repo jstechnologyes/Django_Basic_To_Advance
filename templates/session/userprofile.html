@@ -1,0 +1,26 @@
+{% extends 'basc.html' %}
+
+{% block title %} Profile {% endblock %}
+{% block body %}
+ {% load crispy_forms_tags %}
+    <div class="container">
+       <div class="row">
+         <div class="col">
+           <img src="{{user.userprofile.image.url}}"  class="w-50" alt="">
+         </div>
+           <div class="col">
+               Name={{user.username}}<br>
+               Blood_Group={{user.userprofile.blood_group}}<br>
+               Gender={{user.userprofile.gender}}<br>
+               Nationality={{user.userprofile.nationality}}<br>
+               Religion={{user.userprofile.religion}}<br>
+               Biodata={{user.userprofile.biodata}}<br>
+               Birt_date={{user.userprofile.birth_date}}<br>
+               Address={{user.userprofile.address}}<br>
+               phone={{user.userprofile.phone}}<br>
+               Profession={{user.userprofile.profession}}<br>
+
+           </div>
+       </div>
+    </div>
+{% endblock %}

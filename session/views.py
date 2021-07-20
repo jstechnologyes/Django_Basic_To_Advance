@@ -87,6 +87,34 @@ def change_password(request):
     else:
         form = PasswordChangeForm(user=request.user)
     return render(request,'session/change_pass.html',{'form':form})
+from .forms import UserProfileForm
+from .models import UserProfile
+def userProfile(request):
+    try:
+        instance=UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        instance=None
+    if request.method=="POST":
+        if instance:
+            form=UserProfileForm(request.POST,request.FILES,instance=instance)
+        else:
+            form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            obj=form.save(commit=False)
+            obj.user=request.user
+            obj.save()
+            messages.success(request,"successfully Saved Your profile")
+            return redirect('homeview')
+    else:
+        form=UserProfileForm(instance)
+        context={
+            'form':form
+        }
+        return render(request,'session/userproCreate.html',context)
+def ownerprofile(request):
+    user=request.user
+    return render(request,'session/userprofile.html',{'user':user})
+
 
 
 
