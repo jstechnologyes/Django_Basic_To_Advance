@@ -1,6 +1,6 @@
 {% autoescape off %}
 Hi {{ user.username }},
-You have Successfully created an account on:
-http://{{ domain }}
+Please click on the link to fonfirm your registration,
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 I you think, it's not you, then just ignore this email.
 {% endautoescape %}
