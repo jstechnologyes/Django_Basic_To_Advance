@@ -57,3 +57,28 @@ class Post(models.Model):
             output_size=(300,300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+    def __str__(self):
+        return self.title+ "by: "+self.user.username
+    def get_subject_list(self):
+        sub=self.subject.all()
+        subjects=""
+        for s in sub:
+            subjects=subjects+ str(s.name)+ ","
+        return subjects
+    def get_class_list(self):
+        sub=self.class_in.all()
+        subjects=""
+        for s in sub:
+            subjects=subjects+ str(s.name)+ ","
+        return subjects
+    def ProperCase(self):
+        return self.title.title()
+    def details_short(self):
+        details_words=self.details.split(' ')
+        if len(details_words)>10:
+            return  ' '.join(details_words[:10])+ "....."
+        else:
+            return self.details
+
+
+
