@@ -4,6 +4,13 @@ from PIL import Image
 from django.utils.text import slugify
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
+
+class PostManager(models.Manager):
+    def sorted(self,tile):
+        return self.order_by(tile)
+    def less_than(self,size):
+        return self.filter(salary__lt=size)
+
 # Create your models here.
 class Contact(models.Model):
     name=models.CharField(max_length=100)
@@ -79,6 +86,10 @@ class Post(models.Model):
             return  ' '.join(details_words[:10])+ "....."
         else:
             return self.details
+    objects= models.Manager()
+    items=PostManager()
+
+
 
 
 

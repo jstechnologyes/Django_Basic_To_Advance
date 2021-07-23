@@ -139,3 +139,13 @@ def postcreate(request):
     else:
         form=PostForm()
     return render(request,'tuition/postcreate.html',{'form':form})
+
+import requests
+import json
+def postview(request):
+    api_request=requests.get("https://jsonplaceholder.typicode.com/posts")
+    try:
+        api=json.loads(api_request.content)
+    except:
+        api="Error"
+    return render(request,'tuition/postlistapi.html',{'api':api})
