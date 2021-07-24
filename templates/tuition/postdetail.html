@@ -6,6 +6,7 @@
     <div class="container">
          <h1 class="text-center">Post Detail</h1>
             <div class="col-md-6">
+                <div class="fb-like" data-href="http://127.0.0.1:8000/tuition/postdetail/{{ object.id }}/" data-width="" data-layout="box_count" data-action="like" data-size="large" data-share="true"></div>
                 <img src="{{ object.image.url }}"alt="" style="width:300px; height=300px"  class="rounded-circle">
             </div>
         <div class="col-md-8 offset-md-2">
@@ -26,6 +27,9 @@
         Stats= {% if object.stats %} Yes {% else %} No {% endif %} <br>
 
             
+        </div>
+        <div>
+            <div class="fb-comments" data-href="http://127.0.0.1:8000/tuition/postdetail/{{ object.id }}/" data-width="" data-numposts="10"></div>
         </div>
 
     </div>
